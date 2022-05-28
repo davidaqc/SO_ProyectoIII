@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h4>Login</h4>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Introduzca sus datos</div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="javascript:void(0);" id="frmdata" onsubmit="submitFormData(this)">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Correo electrónico:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Introduzca su correo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="password">Contraseña:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Inroduzca su Contraseña">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // handle form submit
+        function submitFormData(event) {
+
+            // form values
+            var password = event.password.value;
+            var email = event.email.value;
+
+            var http = new XMLHttpRequest();
+
+            var url = 'server.php';
+            var params = 'password=' + password + '&email=' + email;
+
+            http.open('POST', url, true);
+
+            //Send the header information
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            http.onreadystatechange = function() {
+                if (http.readyState == 4 && http.status == 200) {
+                    document.getElementById("frmdata").reset();
+                    console.log(http.responseText);
+                }
+            }
+
+            // Send params with request
+            http.send(params);
+        }
+    </script>
+</body>
+
+</html>
