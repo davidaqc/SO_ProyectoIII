@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Proyecto 3",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "David Quesada Calderon",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "cors": "^2.8.5",
+    "ejs": "*",
+    "express": "*",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0"
+  }
+}

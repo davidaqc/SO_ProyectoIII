@@ -1,0 +1,31 @@
+Instalar nodejs:
+	- sudo apt update
+	- sudo apt install nodejs
+
+Instalar postman:
+	- sudo apt install snapd
+	- sudo apt update
+	- sudo snap install postman
+
+Instalar express:
+	-  npm install express
+
+Instalar mysql:
+	- sudo apt update
+	- sudo apt install mysql-server
+
+Poner contraseña:
+	- sudo mysql
+	- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'mynewpassword';
+
+Dentro de la consola de mysql: 
+	- mysql -u root -p
+	- CREATE USER 'sammy'@'localhost' IDENTIFIED BY 'password';
+	- show databases;
+	- create database miprueba;
+	- use miprueba;
+	- show tables;
+	- create table prueba (id_prueba int); 
+	- insert into prueba (id_prueba) values (1);
+	- select * from prueba;
+	- quit
