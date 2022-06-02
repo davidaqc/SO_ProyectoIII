@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<table id="myTableData"  border="0"   width="100%">
+    <tr >
+        <td ><b>Codigo</b></td>
+        <td ><b>Nombre del curso</b></td>
+        <td><b>Grupo</b></td>
+        <td ><b>Profesor</b></td>
+		<td><b>Creditos</b></td>
+
+    </tr>
+</table>
+<script>
+var cursos = [{
+codigo : "CE-1209",
+nombre : "Algoritmos y estructuras de datos I",
+creditos : "4",
+profesor : "Isaac Ramirez Herrera",
+grupo : "1"
+
+},
+{
+codigo : "CE-5303",
+nombre : "Desarrollo de emprendedores ",
+creditos : "4",
+profesor : "Rita Picado Arroyo",
+grupo : "1"
+
+}
+
+]
+
+;
+
+    var table = document.getElementById("myTableData");
+ for (let i = 0; i < cursos.length; i++) {
+
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    row.insertCell(0).innerHTML= cursos[i].codigo;
+    row.insertCell(1).innerHTML= cursos[i].nombre;
+    row.insertCell(2).innerHTML= cursos[i].grupo;
+    row.insertCell(3).innerHTML= cursos[i].profesor;
+    row.insertCell(4).innerHTML= cursos[i].creditos;
+
+}
+
+ function getCourses() {
+
+            var http = new XMLHttpRequest();
+            var url = 'https://localhost:3000/';
+            http.open('GET', url, false);
+
+            //Send the header information
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		http.send(null);
+
+            if ( http.status == 200) {
+                console.log(http.responseText);
+            }
+        }
+
+
+
+</script>
+
+</body>
+</html>
