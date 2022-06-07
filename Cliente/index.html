@@ -48,7 +48,7 @@
 
             var http = new XMLHttpRequest();
 
-            var url = 'https://localhost:3000/';
+            var url = 'http://localhost:3000/';
             var params = 'password=' + password + '&email=' + email;
 
             http.open('POST', url, true);
@@ -62,12 +62,15 @@
                     console.log(http.responseText);
                 }
             }
-		
+
             // Send params with request
             http.send(params);
-            window.location.href = "../Cliente/cursos.html"
+
+            //needs time to make the post
+            setTimeout(() => { window.location.href = "../Cliente/cursos.html"; }, 2000);
+            
         }
     </script>
 </body>
 
-</html>
+</html> 
