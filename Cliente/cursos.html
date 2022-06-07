@@ -13,26 +13,17 @@
     </tr>
 </table>
 <script>
-var cursos = [{
-codigo : "CE-1209",
-nombre : "Algoritmos y estructuras de datos I",
-creditos : "4",
-profesor : "Isaac Ramirez Herrera",
-grupo : "1"
+var http = new XMLHttpRequest();
+            var url = 'https://localhost:3000';
+            http.open('GET', url, false);
 
-},
-{
-codigo : "CE-5303",
-nombre : "Desarrollo de emprendedores ",
-creditos : "4",
-profesor : "Rita Picado Arroyo",
-grupo : "1"
+            //Send the header information
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		http.send(null);
 
-}
-
-]
-
-;
+            if ( http.status == 200) {
+            var cursos = JSON.parse(http.responseText);
+            }
 
     var table = document.getElementById("myTableData");
  for (let i = 0; i < cursos.length; i++) {
@@ -47,20 +38,10 @@ grupo : "1"
 
 }
 
- function getCourses() {
 
-            var http = new XMLHttpRequest();
-            var url = 'https://localhost:3000/';
-            http.open('GET', url, false);
 
-            //Send the header information
-            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		http.send(null);
-
-            if ( http.status == 200) {
-                console.log(http.responseText);
-            }
-        }
+            
+        
 
 
 

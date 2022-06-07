@@ -22,6 +22,28 @@ app.post('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/', (req, res) => {
+  console.log(req.body)
+  res.send([{
+codigo : "CE-1209",
+nombre : "Algoritmos y estructuras de datos I",
+creditos : "4",
+profesor : "Isaac Ramirez Herrera",
+grupo : "1"
+
+},
+{
+codigo : "CE-5303",
+nombre : "Desarrollo de emprendedores ",
+creditos : "4",
+profesor : "Rita Picado Arroyo",
+grupo : "1"
+
+}
+
+])
+})
+
 //codigo hhtps
 https.createServer({
     cert: fs.readFileSync('./ssl/server.crt'),
