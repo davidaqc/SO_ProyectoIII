@@ -48,7 +48,7 @@
 
             var http = new XMLHttpRequest();
 
-            var url = 'http://localhost:3000/';
+            var url = 'https://localhost:3000/';
             var params = 'data=' +
             '<?xml version="1.0"?>'+
             '<data>'+
@@ -73,7 +73,7 @@
             console.log(http.responseText);
 
             //needs time to make the post
-            setTimeout(() => { window.location.href = "../Cliente/cursos.html"; }, 2000);
+            setTimeout(() => { window.location.href = "../Cliente/cursos.html?email=" + email; }, 2000);
             
         }
     </script>

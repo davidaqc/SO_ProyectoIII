@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<table id="myTableData"  border="0"   width="100%">
-    <tr >
-        <td ><b>Codigo</b></td>
-        <td ><b>Nombre del curso</b></td>
-        <td><b>Grupo</b></td>
-        <td ><b>Profesor</b></td>
-		<td><b>Creditos</b></td>
+    <table id="myTableData"   border="0" width="100%">
+            <tr>
+                    <td><b>Codigo</b></td>
+                    <td><b>Nombre del curso</b></td>
+            <td><b>Grupo</b></td>
+            <td><b>Profesor</b></td>
+            <td><b>Creditos</b></td>
 
-    </tr>
-</table>
-<script>
-var http = new XMLHttpRequest();
-            var url = 'https://localhost:3000';
-            http.open('GET', url, false);
+                
+        </tr>
+    </table>
+    <script>
 
-            //Send the header information
-            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		http.send(null);
+        const params = new URLSearchParams(document.location.search);
+        const email_received = params.get("email");
 
-            if ( http.status == 200) {
+        var http = new XMLHttpRequest();
+        var url = 'https://localhost:3000/get_course_data';
+        var params1 = 'data=' +
+            '<?xml version="1.0"?>'+
+            '<data>'+
+            '<email>' + email_received + '</email>' +
+            '</data>'
+        http.open('POST', url, false);
+
+        //Send the header information
+        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        http.send(params1);
+
+        if (http.status == 200) {
             var cursos = JSON.parse(http.responseText);
-            }
+        }
 
-    var table = document.getElementById("myTableData");
- for (let i = 0; i < cursos.length; i++) {
+        var table = document.getElementById("myTableData");
+        for (let i = 0; i < cursos.length; i++) {
 
-    var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
-    row.insertCell(0).innerHTML= cursos[i].codigo;
-    row.insertCell(1).innerHTML= cursos[i].nombre;
-    row.insertCell(2).innerHTML= cursos[i].grupo;
-    row.insertCell(3).innerHTML= cursos[i].profesor;
-    row.insertCell(4).innerHTML= cursos[i].creditos;
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+            row.insertCell(0).innerHTML = cursos[i].codigo;
+            row.insertCell(1).innerHTML = cursos[i].nombre;
+            row.insertCell(2).innerHTML = cursos[i].grupo;
+            row.insertCell(3).innerHTML = cursos[i].profesor;
+            row.insertCell(4).innerHTML = cursos[i].creditos;
 
-}
+        }
 
-
-
-            
-        
-
-
-
-</script>
+    </script>
 
 </body>
+
 </html>

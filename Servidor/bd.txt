@@ -1,5 +1,28 @@
+drop table if exists courses_users;
 drop table if exists users;
-create table users(email varchar(100), password varchar(100), UNIQUE (email));
+drop table if exists courses;
+
+CREATE TABLE users(
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+	PRIMARY KEY(email)
+);
+
+CREATE TABLE courses(
+    codigo VARCHAR(255) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    creditos VARCHAR(255) NOT NULL,
+    profesor VARCHAR(255) NOT NULL,
+    grupo VARCHAR(255) NOT NULL,
+	PRIMARY KEY(codigo)
+);
+
+CREATE TABLE courses_users(
+    fk_codigo VARCHAR(255) NOT NULL,
+    fk_email VARCHAR(255) NOT NULL,
+	foreign key (fk_codigo) references courses(codigo),
+    foreign key (fk_email) references users(email)
+);
 
 // ---------------------
 insert into users(email, password) values ('david@gmail.com', '1234');
@@ -8,5 +31,24 @@ insert into users(email, password) values ('abigail@gmail.com', '1234');
 insert into users(email, password) values ('jose@gmail.com', 'abcd');
 
 // ---------------------
+insert into courses(codigo, nombre, creditos, profesor, grupo) 
+        values ('CE-1209', 'Algoritmos y estructuras de datos I', '4', 'Isaac Ramirez Herrera', '1');
+insert into courses(codigo, nombre, creditos, profesor, grupo) 
+        values ('CE-5303', 'Desarrollo de emprendedores', '4', 'Rita Picado Arroyo', '2');
+
+// ---------------------
+insert into courses_users(fk_codigo, fk_email) values ('CE-1209', 'david@gmail.com');
+insert into courses_users(fk_codigo, fk_email) values ('CE-1209', 'abigail@gmail.com');
+insert into courses_users(fk_codigo, fk_email) values ('CE-1209', 'jose@gmail.com');
+insert into courses_users(fk_codigo, fk_email) values ('CE-5303', 'david@gmail.com');
+insert into courses_users(fk_codigo, fk_email) values ('CE-5303', 'allan@gmail.com');
+
+// ---------------------
 select * from users;
-select * from users where email='david@gmail.com' and password='1234';
+SELECT * from users where email='david@gmail.com' and password='1234';
+
+SELECT courses.codigo, courses.nombre, courses.creditos, courses.profesor, courses.grupo 
+ FROM courses_users
+ INNER JOIN courses ON courses.codigo = courses_users.fk_codigo
+ INNER JOIN users ON users.email = courses_users.fk_email
+ WHERE users.email='david@gmail.com';
