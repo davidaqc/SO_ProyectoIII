@@ -78,7 +78,7 @@
             setTimeout(() => {
                 if (http.responseText === 'User exists') {
                     window.location.href = "../Cliente/cursos.html?email=" + email;
-                } else {
+                } else if(http.responseText === 'User not exists') {
                     alert("User not exists");
                 }
             }, 2000);
