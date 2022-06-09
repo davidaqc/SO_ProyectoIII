@@ -1,0 +1,11 @@
+drop table if exists users;
+create table users(email varchar(100), password varchar(100));
+
+// ---------------------
+insert into users(email, password) values ('david@gmail.com', '1234');
+insert into users(email, password) values ('allan@gmail.com', 'abcd');
+insert into users(email, password) values ('abigail@gmail.com', '1234');
+insert into users(email, password) values ('jose@gmail.com', 'abcd');
+
+// ---------------------
+select * from users where email='david@gmail.com' and password='1234';
