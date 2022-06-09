@@ -49,7 +49,7 @@ app.post("/", function (req, res) {
     parser = new expat.Parser();
 
   parser.on('text', function (text) {
-    //console.log(text)
+    console.log(text)
     datos_usuario.push(text)
   })
 
