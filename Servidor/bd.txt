@@ -1,5 +1,5 @@
 drop table if exists users;
-create table users(email varchar(100), password varchar(100));
+create table users(email varchar(100), password varchar(100), UNIQUE (email));
 
 // ---------------------
 insert into users(email, password) values ('david@gmail.com', '1234');
@@ -8,4 +8,5 @@ insert into users(email, password) values ('abigail@gmail.com', '1234');
 insert into users(email, password) values ('jose@gmail.com', 'abcd');
 
 // ---------------------
+select * from users;
 select * from users where email='david@gmail.com' and password='1234';
